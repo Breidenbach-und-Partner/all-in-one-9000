@@ -160,6 +160,7 @@ RUN set -ex; \
     gpg --batch --keyserver keyserver.ubuntu.com  --recv-keys 28806A878AE423A28372792ED75899B9A724937A; \
     gpg --batch --verify nextcloud.tar.bz2.asc nextcloud.tar.bz2; \
     tar -xjf nextcloud.tar.bz2 -C /usr/src/; \
+    sed -i 's/return $userLimitReached/return false/g' /usr/src/nextcloud/lib/private/Support/Subscription/Registry.php
     gpgconf --kill all; \
     rm nextcloud.tar.bz2.asc nextcloud.tar.bz2; \
     mkdir -p /usr/src/nextcloud/data; \
